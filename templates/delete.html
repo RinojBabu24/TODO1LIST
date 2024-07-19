@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %} update {% endblock %}
+{% block extra_styles %}
+<style>
+    body {
+    background-color: #8fa9d0;
+    color: #212529;
+}
+    /* Container styling */
+    .container1 {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #78b88f;
+        border: 1px solid #ec0909;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgb(255, 1, 1);
+    }
+
+    /* Heading styling */
+    .container1 h3 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    /* Centering the content */
+    .container1 center {
+        display: block;
+    }
+
+    /* Button styling */
+    .container1 input[type="submit"] {
+        background-color: #e84d3c;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Button hover effect */
+    .container1 input[type="submit"]:hover {
+        background-color: #c0392b;
+    }
+
+    /* Button focus effect for accessibility */
+    .container1 input[type="submit"]:focus {
+        outline: 2px solid #e74c3c;
+        outline-offset: 2px;
+    }
+    /* Cancel button styling */
+.cancel-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #8180da;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Cancel button hover effect */
+.cancel-btn:hover {
+    background-color: #7f8c8d;
+}
+
+</style>
+{% endblock %}
+
+  
+{% block content %}
+<div class="container1">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3><center>Are You sure You want to delete  task</center></h3>
+        
+       
+        <center>
+            <input type="submit" name="confirm_delete" value="Yes">
+            <a href="{% url 'fapp:demo' %}" class="cancel-btn">No</a>
+        </center>
+    </form>
+</div>
+    {% endblock %}

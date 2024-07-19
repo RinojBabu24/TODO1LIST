@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %} create {% endblock %}
+{% block extra_styles %}
+<style>
+body {
+    background-color: #8fa9d0;
+    color: #212529;
+}
+
+.container {
+    background-color: #d5b8b8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(246, 0, 0);
+    padding: 2rem;
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin-top: 5rem;
+}
+
+h2 {
+    font-family: 'Arial', sans-serif;
+    color: #000000;
+    margin-bottom: 1.5rem;
+}
+
+.todo-form .form-label {
+    font-weight: bold;
+}
+
+.todo-form .form-control {
+    border-radius: 5px;
+    border: 1px solid #007efc;
+    box-shadow: none;
+}
+
+.todo-form .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+.todo-form .btn-primary {
+    background-color: #1a70cc;
+    border-color: #007bff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.todo-form .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #00409a;
+}
+
+.todo-form .btn-primary:focus, .todo-form .btn-primary:active {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h2>
+  
+</h2>
+{% if sel_todo %}
+<div class="container">
+    <h2>
+  `     Updating Form
+    </h2>
+    <form action="{% url 'fapp:update' sel_todo.id %}" method="POST" enctype="multipart/form-data">
+        <!-- CSRF token placeholder for Django -->
+        {% csrf_token %}
+        
+        <label for="id_name">Task:</label>
+        <input type="text" id="Task" name="Task" maxlength="100" required value="{{sel_todo.Task}}"> <br><br>
+        
+        <label for="id_date">Date:</label>
+        <input type="date" id="Date" name="Date" value="{{ sel_todo.Date|date:'Y-m-d' }}" required><br><br>
+        
+        <label for="id_time">Time:</label>
+        <input type="time" id="Time" name="Time" value="{{ sel_todo.Time|time:'H:i'}}" required><br><br>
+        
+        <button type="submit">update</button>
+    </form>
+</div> 
+
+{% else %}
+
+ 
+    <div class="container">
+        <h2> Todo Form</h2>
+        <form action=" {% url 'fapp:insert' %}" method="POST" enctype="multipart/form-data">
+  
+            {% csrf_token %}
+            
+            <label for="id_name">Task:</label>
+            <input type="text" id="Task" name="Task" maxlength="100" required><br><br>
+            
+            <label for="id_date">Date:</label>
+            <input type="date" id="Date" name="Date" required><br><br>
+            
+            <label for="id_time">Time:</label>
+            <input type="time" id="Time" name="Time" required><br><br>
+            
+            <button type="submit">Create</button>
+        </form>
+        
+    </div> 
+    {% endif %}
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+   
+{% endblock %}

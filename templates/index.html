@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %} list {% endblock %}
+{% block extra_styles %}
+
+<style>
+    body {
+        background-color: #91b0ce;
+        color: #000000;
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        color: #ff0011;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgb(236, 14, 14);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 10px rgb(129, 255, 4);
+    }
+
+    .btn {
+        margin: 0.5rem;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .list-group-item {
+        background-color: #94d5e2;
+        border: 1px solid #040404;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+    
+</style>
+{% endblock %}
+  
+{% block content %}
+<h1>Todo List</h1>
+<div class="row">
+    {% for i in todo %}
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <!-- <div class="card-header">
+            Todolist
+            </div> -->
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Task: {{ i.Task }}</li>
+            <li class="list-group-item">Date: {{ i.Date }}</li>
+            <li class="list-group-item">Time: {{ i.Time }}</li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <a class= "btn btn-warning" href="{% url 'fapp:edit' i.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+              </svg></a>
+            <a class= "btn btn-danger" href="{% url 'fapp:delete' i.id %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                  </svg>
+            </a>
+           
+         </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
